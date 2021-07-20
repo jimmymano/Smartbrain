@@ -18,7 +18,7 @@ const particlesOptions = {
     value:150,
     density:{
       enable:true,
-      value_area:900
+      value_area:1000
     }
   }
   }
@@ -35,7 +35,22 @@ class App extends React.Component{
   }
 
   calculateFaceLocation =(data)=>{
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById('inputimage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    console.log("width:",width,"height:",height);
+    return{
+      leftCol:clarifaiFace.left_col*width,
+      topRow:clarifaiFace.top_row * height,
+      rightCol:width - (clarifaiFace.right_col*width),
+      bottomRow:height - (clarifaiFace.bottom_row * height),
+    }
+  }
 
+  displayFaceBox = (box) =>{
+    console.log(box);
+    this.setState({box:box});
   }
 
   onInputChange = (event) =>{
@@ -47,15 +62,10 @@ class App extends React.Component{
     app.models
     .predict(
     Clarifai.FACE_DETECT_MODEL,
-    this.state.input).then(
-      function(response){
-        
-        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-      },
-      function(err){
-
-      }
-    )
+    this.state.input)
+    .then(response=>this.displayFaceBox(this.calculateFaceLocation(response)))
+    .catch(err => console.log(err));
+    
   }
 
   render(){
@@ -68,7 +78,7 @@ class App extends React.Component{
       <ImageLinkForm 
       onInputChange={this.onInputChange} 
       onButtonSubmit={this.onButtonSubmit}/> 
-      <FaceRecognition imageUrl={this.state.imageUrl}/>
+      <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
     </div>
   );
 }
