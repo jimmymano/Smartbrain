@@ -86,7 +86,6 @@ componentDidMount(){
     this.setState({input:event.target.value});
   }
 
- 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
     app.models
@@ -138,8 +137,8 @@ componentDidMount(){
       :(
         this.state.route==='signin'
         ?<SignIn loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
-        :<SignIn loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
-        // :<Register loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
+        :<Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+        
       )
       }
     </div>
