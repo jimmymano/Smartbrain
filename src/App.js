@@ -9,7 +9,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Particles from 'react-particles-js';
 import 'tachyons';
-// import Clarifai from 'clarifai';
 
 const particlesOptions = {
   particles: {number:{
@@ -85,7 +84,6 @@ componentDidMount(){
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
     fetch('https://fast-headland-27705.herokuapp.com/imageurl', {
-      mode:'no-cors',
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -95,8 +93,7 @@ componentDidMount(){
     .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('https://fast-headland-27705.herokuapp.com/image', {
-          mode:'no-cors',  
+          fetch('https://fast-headland-27705.herokuapp.com/image', {  
           method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
