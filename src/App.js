@@ -84,7 +84,8 @@ componentDidMount(){
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    fetch('https://git.heroku.com/fast-headland-27705.git/imageurl', {
+    fetch('https://fast-headland-27705.herokuapp.com/imageurl', {
+      mode:'no-cors',
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -94,8 +95,9 @@ componentDidMount(){
     .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('https://git.heroku.com/fast-headland-27705.git/image', {
-            method: 'put',
+          fetch('https://fast-headland-27705.herokuapp.com/image', {
+          mode:'no-cors',  
+          method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               id: this.state.user.id

@@ -19,7 +19,8 @@ onPasswordChange = (event) =>{
 }   
 
 onSubmitSignIn = () =>{
-    fetch('https://git.heroku.com/fast-headland-27705.git/signin',{
+    fetch('https://fast-headland-27705.herokuapp.com/signin',{
+        mode:'no-cors',
         method:'post',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({
