@@ -4,13 +4,17 @@ A Face Detection App developed using the React framework. Copy and paste an imag
 For live site: smartbrane.herokuapp.com
 
 Use the following credentials to bypass new user registration.
+
 email:lol@gmail.com
 password:lol
 
 Smartbrain API:https://github.com/jimmymano/Smartbrain-Api
 
 Future Release Notes:
+
 Planning to upgrade Smartbrain to detect multiple faces.
+
 Upgrade UI/UX 
+
 Increased security 
 
